@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		85988F0F2D6FCF8F000FD385 /* MoodTracker_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85988F0E2D6FCF8F000FD385 /* MoodTracker_SwiftUIApp.swift */; };
-		85988F112D6FCF8F000FD385 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85988F102D6FCF8F000FD385 /* ContentView.swift */; };
+		85988F112D6FCF8F000FD385 /* MoodSelectionScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85988F102D6FCF8F000FD385 /* MoodSelectionScreen.swift */; };
 		85988F132D6FCF91000FD385 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85988F122D6FCF91000FD385 /* Assets.xcassets */; };
 		85988F162D6FCF91000FD385 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85988F152D6FCF91000FD385 /* Preview Assets.xcassets */; };
+		85988F1D2D767883000FD385 /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85988F1C2D767883000FD385 /* Mood.swift */; };
+		85988F1F2D767904000FD385 /* MoodSelectionScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85988F1E2D767904000FD385 /* MoodSelectionScreenViewModel.swift */; };
+		85988F212D768BAE000FD385 /* SavedMood.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85988F202D768BAE000FD385 /* SavedMood.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		85988F0B2D6FCF8F000FD385 /* MoodTracker-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MoodTracker-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		85988F0E2D6FCF8F000FD385 /* MoodTracker_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodTracker_SwiftUIApp.swift; sourceTree = "<group>"; };
-		85988F102D6FCF8F000FD385 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		85988F102D6FCF8F000FD385 /* MoodSelectionScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodSelectionScreen.swift; sourceTree = "<group>"; };
 		85988F122D6FCF91000FD385 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85988F152D6FCF91000FD385 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		85988F1C2D767883000FD385 /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
+		85988F1E2D767904000FD385 /* MoodSelectionScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodSelectionScreenViewModel.swift; sourceTree = "<group>"; };
+		85988F202D768BAE000FD385 /* SavedMood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedMood.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +57,11 @@
 		85988F0D2D6FCF8F000FD385 /* MoodTracker-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				85988F202D768BAE000FD385 /* SavedMood.swift */,
+				85988F1E2D767904000FD385 /* MoodSelectionScreenViewModel.swift */,
 				85988F0E2D6FCF8F000FD385 /* MoodTracker_SwiftUIApp.swift */,
-				85988F102D6FCF8F000FD385 /* ContentView.swift */,
+				85988F102D6FCF8F000FD385 /* MoodSelectionScreen.swift */,
+				85988F1C2D767883000FD385 /* Mood.swift */,
 				85988F122D6FCF91000FD385 /* Assets.xcassets */,
 				85988F142D6FCF91000FD385 /* Preview Content */,
 			);
@@ -137,7 +146,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85988F112D6FCF8F000FD385 /* ContentView.swift in Sources */,
+				85988F212D768BAE000FD385 /* SavedMood.swift in Sources */,
+				85988F112D6FCF8F000FD385 /* MoodSelectionScreen.swift in Sources */,
+				85988F1D2D767883000FD385 /* Mood.swift in Sources */,
+				85988F1F2D767904000FD385 /* MoodSelectionScreenViewModel.swift in Sources */,
 				85988F0F2D6FCF8F000FD385 /* MoodTracker_SwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

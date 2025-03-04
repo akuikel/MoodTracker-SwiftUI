@@ -5,47 +5,19 @@
 //  Created by Aavash Kuikel on 2/26/25.
 //
 
+import Foundation
 import SwiftUI
+import SwiftData
 
-enum Mood: String{
-    case veryUnpleasent = "Very Unpleasent"
-    case unpleasent = "Unpleasent"
-    case neutral = "Neutral"
-    case pleasent = "Pleasent"
-    case veryPleasent = "Very Pleasent"
+struct MoodSelectionScreen: View {
+    @Environment(\.modelContext) var context
+    var viewModel = MoodSelectionScreenViewModel()
+    @Query(sort: \SavedMood.date) var savedMoods: [SavedMood]
     
-    var color: Color
-    {
-        switch self
-        {
-        case .veryUnpleasent: return Color.red
-        case .unpleasent: return Color.orange
-        case .neutral: return Color.yellow
-        case .pleasent: return Color.green
-        case .veryPleasent: return Color.blue
-        }
-    }
-}
 
-struct ContentView: View {
-    
-    @State private var moodValue: Double=0
-    
-    private var selectedMood: Mood {
-        switch moodValue {
-        case 0: return .veryPleasent
-        case 1: return .unpleasent
-        case 2: return .neutral
-        case 3: return .pleasent
-        case 4: return .veryPleasent
-        default: return .neutral
-        }
-        
-    }
-    
     var body: some View {
         ZStack {
-            selectedMood.color
+            viewModel.selectedMood.color
                 .edgesIgnoringSafeArea(.all)
                 .opacity(0.2)
            
@@ -57,28 +29,35 @@ struct ContentView: View {
                 Spacer()
                 
                 
-                BlobView(color: selectedMood.color)
+                BlobView(color: viewModel.selectedMood.color)
+                    .onTapGesture {
+                        savedMoods.forEach {mood in
+                            print(mood.date)
+                            print(mood.mood.rawValue)
+                        }
+                    }
                 
                 Spacer()
                 
                 
-                Text(selectedMood.rawValue)
+                Text(viewModel.selectedMood.rawValue)
                     .font(.title)
                 
                 Spacer()
                 
-                MoodSlider(moodValue: $moodValue)
+                MoodSlider(viewModel: viewModel)
                 
                 Spacer()
                 
                 Button{
+                    context.insert(SavedMood(date: Date(), mood: viewModel.selectedMood))
                     
                 } label:{
                     Text("Save")
                         .font(.headline)
                         .frame(maxWidth:.infinity)
                         .padding()
-                        .background(selectedMood.color)
+                        .background(viewModel.selectedMood.color)
                         .foregroundColor(.white)
                         .clipShape(Capsule())
                 }
@@ -92,9 +71,10 @@ struct ContentView: View {
 }
 
 struct MoodSlider: View{
+    var viewModel : MoodSelectionScreenViewModel
+    
     private let size: CGFloat = 40
     private let trackWidth: CGFloat = 300
-    @Binding var moodValue : Double
     @State private var xValue: CGFloat = 0
     private let steps = 5
     
@@ -116,14 +96,8 @@ struct MoodSlider: View{
                 .shadow(radius: 1)
                 .gesture(DragGesture().onChanged {
                        value in
-                    let minX: CGFloat = 0
-                    let maxX: CGFloat = trackWidth - size
-                    let clampedX = min(max(minX, value.location.x), maxX)
-                    let step = round(clampedX / stepWidth)
-                
-
-                    self.xValue = step * stepWidth
-                    self.moodValue = Double(step)
+                    viewModel.updateMoodValue(sliderXValue: value.location.x, stepWidth: stepWidth, size: size, trackWidth: trackWidth)
+                    xValue = CGFloat(viewModel.moodValue) * stepWidth
                 })
             
             
@@ -144,5 +118,5 @@ struct BlobView: View {
 }
 
 #Preview {
-    ContentView()
+    MoodSelectionScreen()
 }
